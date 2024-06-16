@@ -3,7 +3,7 @@ import { supabase } from "./supabase";
 
 export async function getProducts() {
   await new Promise((res) => setTimeout(res, 1000));
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/data.json`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`);
 
   const data = await res.json();
 

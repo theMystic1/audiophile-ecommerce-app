@@ -16,7 +16,7 @@ function CheckoutForm({ session }) {
   }
 
   return (
-    <form className="p-8   bg-primary-50 rounded-lg">
+    <div className="p-8   bg-primary-50 rounded-lg">
       <h1 className="text-2xl uppercase text-secondary-100 my-8">checkout</h1>
       <HThree>billing details</HThree>
 
@@ -26,34 +26,44 @@ function CheckoutForm({ session }) {
             placeholder={"Enter name"}
             label={"Name"}
             defaultValue={name}
+            name="name"
           />
 
           <Input
             placeholder={"email"}
             label={"Email address"}
             defaultValue={email}
+            name="email"
           />
         </div>
 
-        <Input placeholder={"Phone Number"} label={"Phone Number"} />
+        <Input
+          placeholder={"Phone Number"}
+          label={"Phone Number"}
+          name="phone"
+        />
       </FlexDiv>
 
       <HThree>shipping info</HThree>
 
       <FlexDiv>
-        <Input placeholder="Enter shipping address" label="Address" />
+        <Input
+          placeholder="Enter shipping address"
+          label="Address"
+          name="address"
+        />
       </FlexDiv>
 
       <HThree>payment details</HThree>
 
       <FlexDiv>
         <div>
-          <Input placeholder={"Zip code"} label={"Zip Code"} />
+          <Input placeholder={"Zip code"} label={"Zip Code"} name="zip-code" />
 
-          <Input placeholder={"City"} label={"City"} />
+          <Input placeholder={"City"} label={"City"} name="city" />
         </div>
 
-        <Input placeholder={"Country"} label={"Country"} />
+        <Input placeholder={"Country"} label={"Country"} name="country" />
       </FlexDiv>
 
       <HThree>payment details</HThree>
@@ -99,18 +109,20 @@ function CheckoutForm({ session }) {
             placeholder={"e-Money"}
             type="number"
             label={"e-Money Number"}
+            name="e-number"
           />
 
           <Input
             placeholder={"e-Money Pin"}
             type="number"
             label={"e-Money Pin"}
+            name="e-pin"
           />
         </FlexDiv>
       ) : (
         <CashMessage />
       )}
-    </form>
+    </div>
   );
 }
 
@@ -135,7 +147,7 @@ function CashMessage() {
   );
 }
 
-function Input({ type = "text", placeholder, label, defaultValue }) {
+function Input({ type = "text", placeholder, label, defaultValue, name }) {
   return (
     <div className="flex flex-col gap-2 w-full mb-8">
       <label className="text-secondary-100">{label}</label>
@@ -146,6 +158,7 @@ function Input({ type = "text", placeholder, label, defaultValue }) {
         className="rounded-md px-8 py-4 border border-primary-300 "
         defaultValue={defaultValue}
         required
+        name={name}
       />
     </div>
   );

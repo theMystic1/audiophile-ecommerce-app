@@ -8,6 +8,7 @@ import { navInfo } from "../_lib/data-services";
 import { useState } from "react";
 import Cart from "./Cart";
 import { usePathname } from "next/navigation";
+import NavMenu from "./NavMenu";
 
 function Nav() {
   const params = usePathname();
@@ -25,16 +26,24 @@ function Nav() {
   }
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
 
   function handleOpen() {
     setIsOpen((iso) => !iso);
   }
+
+  function handleOpenMenu() {
+    setIsOpenMenu((iso) => !iso);
+  }
   return (
     <nav className="md:px-20 px-10 bg-secondary-50 py-8">
       <div className="flex h-5 justify-between  items-center relative">
-        <div className="relative h-8 w-8 flex md:hidden rounded-sm ">
+        <button
+          className="relative h-8 w-8 flex md:hidden rounded-sm "
+          onClick={handleOpenMenu}
+        >
           <Image src={menuIcon} className="" fill alt="hamburger-menu" />
-        </div>
+        </button>
         <span className="flex gap-8 items-center">
           <Logo />
         </span>
@@ -64,6 +73,8 @@ function Nav() {
         </button>
       </div>
       {/* <Cart /> */}
+
+      <NavMenu isOpenMenu={isOpenMenu} setIsOpenMenu={setIsOpenMenu} />
 
       {isOpen ? <Cart setIsOpen={setIsOpen} /> : null}
     </nav>

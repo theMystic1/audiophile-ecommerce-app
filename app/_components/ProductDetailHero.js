@@ -1,8 +1,51 @@
+"use client";
+
 import Image from "next/image";
 import Button from "./Button";
+import { useState } from "react";
+import { useCart } from "../_contsxt/CartContext";
+import toast from "react-hot-toast";
 
 function ProductDetailHero({ product }) {
   const { image, name, description, id, category } = product;
+
+  // console.log(product);
+  const [count, setCount] = useState(1);
+  const { cart, setCart } = useCart();
+
+  function addToCart(e) {
+    e.preventDefault();
+
+    // Check if the product is already in the cart
+    const alreadyInCart = cart.find((ct) => ct.id === product.id);
+
+    if (alreadyInCart) {
+      // Update the quantity of the existing product
+      setCart(
+        cart.map((ct) =>
+          ct.id === product.id ? { ...ct, numItem: ct.numItem + count } : ct
+        )
+      );
+    } else {
+      // Add the new product to the cart
+      const cartProduct = { ...product, numItem: count };
+      setCart([...cart, cartProduct]);
+    }
+    setCount(1);
+    toast.success(`${count} ${name} added to cart`);
+  }
+
+  function handleCount(e, type) {
+    e.preventDefault();
+
+    if (count === 1 && type === "sub") {
+      return count;
+    } else if (count > 1 && type === "sub") {
+      setCount((c) => c - 1);
+    }
+
+    if (type === "add") setCount((c) => c + 1);
+  }
 
   const { desktop, tablet, mobile } = image;
   return (
@@ -47,11 +90,21 @@ function ProductDetailHero({ product }) {
         </p>
         <form className="flex justify-center  lg:justify-start gap-6 flex-col sm:flex-row">
           <span className="bg-primary-200 justify-between  px-8 py-4 flex items-center gap-8">
-            <button className="font-bold text-primary-300">&#8722;</button>
-            <span>{1}</span>
-            <button className="font-bold text-primary-300">&#43;</button>
+            <button
+              className="font-bold text-primary-300"
+              onClick={(e) => handleCount(e, "sub")}
+            >
+              &#8722;
+            </button>
+            <span>{count}</span>
+            <button
+              className="font-bold text-primary-300"
+              onClick={(e) => handleCount(e, "add")}
+            >
+              &#43;
+            </button>
           </span>
-          <Button type="primary" category="btn">
+          <Button type="primary" category="btn" onClick={addToCart}>
             add to cart
           </Button>
         </form>

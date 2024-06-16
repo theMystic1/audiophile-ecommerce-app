@@ -4,9 +4,6 @@ import Products from "./_components/Products";
 import ProductsSample from "./_components/ProductsSample";
 
 export default async function pages() {
-  const supabaseKey = process.env.SUPABASE_KEY;
-  const supabaseUrl = process.env.SUPABASE_URL;
-
   return (
     <div>
       <Hero />

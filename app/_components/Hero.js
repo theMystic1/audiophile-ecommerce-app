@@ -12,7 +12,7 @@ async function Hero() {
   const { category, id } = prooduct;
 
   return (
-    <main className=" w-full h-screen mb-10 relative px-10  md:px-[80px] grid items-center ">
+    <main className=" w-full h-screen mb-10 relative px-10  md:px-[80px] grid items-center z-40">
       <Image
         src={heroImg}
         fill

@@ -24,7 +24,6 @@ async function RelatedProductItem({ item }) {
   const product = await getProductByName(item.name);
 
   const { id, category } = product;
-  console.log(item);
   return (
     <div className="flex flex-col justify-center items-center w-full">
       <div className="relative h-[400px]  w-full md:flex justify-center sm:max-w-[400px]  md:max-w-[500px] lg:w-full  rounded-sm ">

@@ -77,6 +77,22 @@ export async function getGuest(email) {
   return data;
 }
 
+export async function createOrder(newOrder) {
+  const { data, error } = await supabase.from("orders").insert([newOrder]);
+
+  if (error) {
+    console.error(error);
+    throw new Error("Unable to create order");
+  }
+
+  return data;
+}
+
+export const formatCurrency = (value) =>
+  new Intl.NumberFormat("en", { style: "currency", currency: "USD" }).format(
+    value
+  );
+
 export const navInfo = [
   {
     name: "home",

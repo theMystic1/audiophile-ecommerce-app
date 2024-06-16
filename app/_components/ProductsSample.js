@@ -1,14 +1,11 @@
 import speakerBig from "@/public/assets/home/desktop/image-speaker-zx9.png";
-import speakerTab from "@/public/assets/home/tablet/image-speaker-zx9.png";
-import speakermob from "@/public/assets/home/mobile/image-speaker-zx9.png";
 
 import halfSpkBig from "@/public/assets/home/desktop/image-speaker-zx7.jpg";
 import halfSpkTab from "@/public/assets/home/tablet/image-speaker-zx7.jpg";
 import halfSpkmob from "@/public/assets/home/mobile/image-speaker-zx7.jpg";
 
 import earPhoneBig from "@/public/assets/home/desktop/image-earphones-yx1.jpg";
-import earPhoneTab from "@/public/assets/home/tablet/image-earphones-yx1.jpg";
-import earPhonemob from "@/public/assets/home/mobile/image-earphones-yx1.jpg";
+
 import Image from "next/image";
 import Button from "./Button";
 import { getProductByName } from "../_lib/data-services";
